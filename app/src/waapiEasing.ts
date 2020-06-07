@@ -1,5 +1,5 @@
 import baz from "bezier-easing"
-import { camelCaseToDash, dashToCamelCase } from "dash-camelcase"
+import { camelCase, paramCase } from "change-case"
 
 export type easingKeyWordCamelCase = "linear" | "ease" | "easeIn" | "easeOut" | "easeInOut"
 export type easingKeyWordDashCase  = "linear" | "ease" | "ease-in" | "ease-out" | "ease-in-out"
@@ -33,11 +33,11 @@ export class Easing {
   }
   public get string() {
     if (this.keyword === undefined) return "cubic-bezier(" + this.ax + "," +  this.ay + "," +  this.bx + "," +  this.by + ")"
-    return camelCaseToDash(this.keyword)
+    return paramCase(this.keyword)
   }
   public get function() {
     if (this.ax === undefined) {
-      let f = Easing.keywords[dashToCamelCase(this.keyword)]
+      let f = Easing.keywords[camelCase(this.keyword)]
       this.ax = f[0]
       this.ay = f[1]
       this.bx = f[2]
