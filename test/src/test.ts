@@ -1,4 +1,8 @@
-import waapiEasing from "./../../app/src/waapiEasing"
-//const testElem = document.querySelector("#test")
+import { Easing } from "./../../app/src/waapiEasing"
 
-waapiEasing()
+
+let ease = new Easing("ease")
+
+console.log(ease.string)  
+console.log(ease.function(.5))
+console.log(ease.function(.5))

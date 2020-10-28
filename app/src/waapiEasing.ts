@@ -1,5 +1,6 @@
 import baz from "bezier-easing"
 import { camelCase, paramCase } from "change-case"
+import constructAttachToPrototype from "attatch-to-prototype"
 
 export type easingKeyWordCamelCase = "linear" | "ease" | "easeIn" | "easeOut" | "easeInOut"
 export type easingKeyWordDashCase  = "linear" | "ease" | "ease-in" | "ease-out" | "ease-in-out"
@@ -32,8 +33,7 @@ export class Easing {
     }
   }
   public get string() {
-    if (this.keyword === undefined) return "cubic-bezier(" + this.ax + "," +  this.ay + "," +  this.bx + "," +  this.by + ")"
-    return paramCase(this.keyword)
+    return (constructAttachToPrototype(this)("function", {value: this.keyword === undefined ? "cubic-bezier(" + this.ax + "," +  this.ay + "," +  this.bx + "," +  this.by + ")" : paramCase(this.keyword)}) as any).value
   }
   public get function() {
     if (this.ax === undefined) {
@@ -43,7 +43,7 @@ export class Easing {
       this.bx = f[2]
       this.by = f[3]
     }
-    return baz(this.ax, this.ay, this.bx, this.by)
+    return (constructAttachToPrototype(this)("function", {value: baz(this.ax, this.ay, this.bx, this.by), writable: false}) as any).value
   }
 }
 
