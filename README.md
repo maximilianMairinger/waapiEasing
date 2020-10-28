@@ -2,18 +2,37 @@
 
 Waapi bezier-functions as css string and js function
 
-> Please not that Waapi easing is currently under development and not yet suited for production
-
 ## Example
 
+### Common functions
 
+```ts
+import { Easing } from "waapi-easing"
 
-```js
-import waapiEasing from "waapi-easing"
+let ease = new Easing("ease")
 
-waapiEasing()
+ease.string     // "ease"
+ease.function   // (n: progress) => progress
 ```
 
+> Note: `progress` is a number between 0 and 1.
+
+These are all available common function: 
+
+ * linear
+ * **ease**
+ * easeIn
+ * easeOut
+ * **easeInOut**
+
+### Custom functions
+
+```ts
+let custom = new Easing(.48, .165, .325, .97)
+
+custom.string   // "cubic-bezier(.48, .165, .325, .97)"
+custom.function // (n: progress) => progress
+```
 
 
 ## Conribute
