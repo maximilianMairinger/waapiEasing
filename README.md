@@ -35,6 +35,6 @@ custom.function // (n: progress) => progress
 ```
 
 
-## Conribute
+## Contribute
 
 All feedback is appreciated. Create a pull request or write an issue.
