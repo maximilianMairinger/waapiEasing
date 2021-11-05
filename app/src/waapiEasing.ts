@@ -43,7 +43,11 @@ export class Easing {
       this.bx = f[2]
       this.by = f[3]
     }
-    return (constructAttachToPrototype(this)("function", {value: baz(this.ax, this.ay, this.bx, this.by), writable: false}) as any).value
+    const ease = baz(this.ax, this.ay, this.bx, this.by)
+    return (constructAttachToPrototype(this)("function", {value: (v: number) => {
+      const minus = v < 0
+      return ease(Math.abs(v)) * (minus ? -1 : 1)
+    }, writable: false}) as any).value
   }
 }
 
