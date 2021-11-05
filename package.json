@@ -1,6 +1,6 @@
 {
   "name": "waapi-easing",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Waapi bezier-functions as css string and js function",
   "main": "app/dist/waapiEasing.js",
   "types": "app/dist/waapiEasing.d.ts",
